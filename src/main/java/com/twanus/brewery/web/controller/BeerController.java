@@ -20,7 +20,7 @@ public class BeerController {
         this.beerService = beerService;
     }
 
-    @GetMapping({"/{beerId}"})
+    @GetMapping({"/{beerId}"}) // GET BEER BY ID
     public ResponseEntity<BeerDto> getBeer(@PathVariable("beerId") UUID beerId) {
         return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
     }
@@ -40,7 +40,7 @@ public class BeerController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @DeleteMapping({"/{beerId}"})
+    @DeleteMapping({"/{beerId}"}) // DELETE BEER
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBeer(@PathVariable("beerId") UUID beerId){
         beerService.deleteById(beerId);

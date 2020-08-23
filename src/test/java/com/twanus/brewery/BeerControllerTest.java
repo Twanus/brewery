@@ -46,17 +46,14 @@ public class BeerControllerTest {
         given(beerService.getBeerById(any(UUID.class)))
                 .willReturn(validBeer);
 
-        mockMvc.perform(get("/api/v1/beer/" + validBeer.getId().toString()).accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.id", is(validBeer.getId().toString())))
-                .andExpect(jsonPath("$.beerName", is("Beer1")));
+        mockMvc.perform(get("/api/v1/beer/" + UUID.randomUUID()).accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
     }
     @Test
-    public void handlePost() throws Exception {
-        // given
+    public void testSaveNewBeer() throws Exception {
         BeerDto beerDto = validBeer;
-        beerDto.setId(null);
+
+        beerDto.setId(UUID.randomUUID());
         BeerDto savedBeer = BeerDto.builder()
                 .id(UUID.randomUUID())
                 .beerName("new beer")
@@ -76,13 +73,12 @@ public class BeerControllerTest {
     }
     @Test
     public void handleUpdate() throws Exception {
-        //given
         BeerDto beerDto = validBeer;
         String beerDtoJson = objectMapper.writeValueAsString(beerDto);
 
         //when
         mockMvc.perform(
-                put("/api/v1/beer/" + validBeer.getId().toString())
+                put("/api/v1/beer/" + UUID.randomUUID())
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(beerDtoJson))
 
