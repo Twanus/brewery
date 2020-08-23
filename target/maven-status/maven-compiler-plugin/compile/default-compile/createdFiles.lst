@@ -1,0 +1,3 @@
+com\twanus\brewery\BreweryApplication.class
+com\twanus\brewery\web\model\BeerDto$BeerDtoBuilder.class
+com\twanus\brewery\web\model\BeerDto.class
