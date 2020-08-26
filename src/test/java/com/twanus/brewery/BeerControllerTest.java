@@ -16,7 +16,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.UUID;
 
-import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
@@ -35,6 +34,7 @@ public class BeerControllerTest {
     @Before
     public void setUp() {
         validBeer = BeerDto.builder()
+                .id(UUID.randomUUID())
                 .beerStyle("PALE ALE")
                 .beerName("Hoegaarden")
                 .upc(123456798012L)
